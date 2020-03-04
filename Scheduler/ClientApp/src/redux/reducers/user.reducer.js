@@ -1,4 +1,8 @@
-import { USER_LOGIN_STARTED, USER_LOGIN_SUCCSEED, USER_LOGIN_FAILED } from '../actions/user.action';
+import {
+  USER_LOGIN_REQUESTED,
+  USER_LOGIN_SUCCSEED,
+  USER_LOGIN_FAILED,
+} from '../actions/user.action';
 
 const initalState = {
   user: {},
@@ -8,7 +12,7 @@ const initalState = {
 
 export default function user(state = initalState, action) {
   switch (action.type) {
-    case USER_LOGIN_STARTED:
+    case USER_LOGIN_REQUESTED:
       return {
         ...state,
         isLoading: true,

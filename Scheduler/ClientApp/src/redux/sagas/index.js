@@ -1,17 +1,19 @@
-import { put, call, all, fork } from 'redux-saga/effects';
+import { put, call, takeLatest } from 'redux-saga/effects';
 
 import * as api from '../../services/api';
 
-// import {
-//   startLogin,
-//   loginSuccseed,
-//   loginFailed
-// } from "../actions/user.action"
+import { USER_LOGIN_REQUESTED, loginSuccseed, loginFailed } from '../actions/user.action';
 
 function* fetchLogin(action) {
-  const user = yield call(api.fetchLogin, action.payload);
+  try {
+    const user = yield call(api.fetchLogin, action.payload.credentials);
+    console.log(user);
+    yield put(loginSuccseed(user));
+  } catch (error) {
+    yield put(loginFailed());
+  }
 }
 
-export default function* root() {
-  yield all([fork(fetchLogin)]);
+export default function* mySaga() {
+  yield takeLatest(USER_LOGIN_REQUESTED, fetchLogin);
 }

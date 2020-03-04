@@ -1,7 +1,8 @@
 import { Box, Button, Container, Grid, makeStyles, Paper, TextField } from '@material-ui/core';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { startLogin } from '../redux/actions';
 
 const useStyles = makeStyles({
   container: {
@@ -14,12 +15,10 @@ const useStyles = makeStyles({
 export default function Auth() {
   const classes = useStyles();
   const { register, handleSubmit, reset, errors } = useForm();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const submit = value => {
-    console.log(value);
+    dispatch(startLogin(value));
   };
-  ``;
-  console.log('parent rerender');
 
   return (
     <Container maxWidth="xs" className={classes.container}>

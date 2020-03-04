@@ -1,11 +1,12 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core";
-import sagas from "./redux/sagas";
-import { Auth } from "./pages";
-import { theme } from "./constants";
-import { Provider } from "react-redux";
-import store from "./redux/store";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core';
+import sagas from './redux/sagas';
+import { Auth } from './pages';
+import { theme } from './constants/theme';
+import store from './redux/store';
+
 store.runSaga(sagas);
 
 function App() {

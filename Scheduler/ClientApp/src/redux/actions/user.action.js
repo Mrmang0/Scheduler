@@ -1,10 +1,15 @@
-export const USER_LOGIN_STARTED = 'USER_LOGIN';
+export const USER_LOGIN_REQUESTED = 'USER_LOGIN_STARTED';
 export const USER_LOGIN_SUCCSEED = 'USER_LOGIN_SUCCSEED';
 export const USER_LOGIN_FAILED = 'USER_LOGIN_FAILED';
 
-export const startLogin = () => ({
-  type: USER_LOGIN_STARTED,
-  payload: true,
+export const requestLogin = () => ({ type: USER_LOGIN_REQUESTED });
+
+export const startLogin = credentials => ({
+  type: USER_LOGIN_REQUESTED,
+  payload: {
+    isLoading: true,
+    credentials,
+  },
 });
 
 export const loginSuccseed = user => ({
@@ -12,7 +17,7 @@ export const loginSuccseed = user => ({
   payload: user,
 });
 
-export const loginFailed = () => ({
+export const loginFailed = error => ({
   type: USER_LOGIN_FAILED,
-  payload: false,
+  payload: error,
 });
