@@ -1,12 +1,17 @@
 import {
-    combineReducers
+    createStore,
+    applyMiddleware
+
 } from "redux"
-
 import {
-    UserReducer
-} from "./reducers"
+    composeWithDevTools
+} from 'redux-devtools-extension'
+import reducers from "./reducers"
+import createSagaMiddleware from 'redux-saga'
 
+const sagaMiddleware = createSagaMiddleware();
+const enhancers = composeWithDevTools(applyMiddleware(sagaMiddleware))
+const store = createStore(reducers, enhancers);
+store.runSaga = sagaMiddleware.run;
 
-export default combineReducers({
-    UserReducer
-})()
+export default store;

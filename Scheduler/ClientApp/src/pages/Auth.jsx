@@ -10,7 +10,7 @@ import {
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { USER_LOGIN } from "../redux/actionsTypes";
+import { USER_LOGIN } from "../redux/actions";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -25,8 +25,11 @@ export default function Auth() {
   const { register, handleSubmit, reset, errors } = useForm();
   const dispatch = useDispatch();
   const submit = value => {
-    console.log(dispatch(USER_LOGIN));
+    // console.log(dispatch(USER_LOGIN));
   };
+
+  console.log("parent rerender");
+
   return (
     <Container maxWidth="xs" className={classes.container}>
       <Paper>

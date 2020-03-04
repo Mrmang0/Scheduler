@@ -1,14 +1,33 @@
 import {
-	USER_LOGIN
-} from "../actionsTypes/user.types"
+	USER_LOGIN_STARTED,
+	USER_LOGIN_SUCCSEED,
+	USER_LOGIN_FAILED
+} from "../actions/user.action"
 
-export default function user(state = {}, action) {
+const initalState = {
+	user: {},
+	isLoading: false,
+	error: null
+}
+
+export default function user(state = initalState, action) {
 	switch (action.type) {
-		case USER_LOGIN:
+		case USER_LOGIN_STARTED:
+			return {
+				...state,
+				isLoading: true
+			};
+		case USER_LOGIN_SUCCSEED:
 			return ({
-				name: "oba",
-				email: "oba@cdm.dk",
-			})
+				user: action.payload,
+				isLoading: false
+			});
+		case USER_LOGIN_FAILED:
+			return ({
+				...state,
+				isLoading: false,
+				error: action.payload
+			});
 		default:
 			return state
 	}
