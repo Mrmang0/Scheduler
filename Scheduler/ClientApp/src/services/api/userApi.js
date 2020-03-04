@@ -1,7 +1,12 @@
-const endpoint = "api/user"
+const endpoint = 'api/user';
 
 export function fetchLogin(userData) {
   return fetch(`${endpoint}/auth`, {
-    method: "POST"
-  })
+    method: 'POST',
+    body: JSON.stringify(userData),
+  });
+}
+
+export function fetchUser() {
+  return 'hi';
 }

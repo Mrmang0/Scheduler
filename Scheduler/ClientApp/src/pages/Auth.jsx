@@ -1,34 +1,25 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  makeStyles,
-  Paper,
-  TextField
-} from "@material-ui/core";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { USER_LOGIN } from "../redux/actions";
+import { Box, Button, Container, Grid, makeStyles, Paper, TextField } from '@material-ui/core';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+// import { useDispatch } from 'react-redux';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   container: {
-    height: "100vh",
-    display: "flex",
-    alignItems: "center"
-  }
-}));
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+  },
+});
 
 export default function Auth() {
   const classes = useStyles();
   const { register, handleSubmit, reset, errors } = useForm();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const submit = value => {
-    // console.log(dispatch(USER_LOGIN));
+    console.log(value);
   };
-
-  console.log("parent rerender");
+  ``;
+  console.log('parent rerender');
 
   return (
     <Container maxWidth="xs" className={classes.container}>
