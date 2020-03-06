@@ -17,8 +17,8 @@ namespace Scheduler.Web.Controllers
 
         }
 
-        [HttpPost("auth")]
-        public ActionResult Auth(User user)
+        [HttpPost("authenticate")]
+        public IActionResult Authenticate(User user)
         {
             return Ok(user);
         }
