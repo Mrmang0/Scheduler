@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,6 +6,9 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Scheduler.Infrastructure;
+using Scheduler.Infrastructure.Settings;
+using Scheduler.ReadModel;
 
 namespace Scheduler.Web
 {
@@ -22,7 +26,10 @@ namespace Scheduler.Web
         {
 
             services.AddControllersWithViews();
-
+            services.AddTransient(typeof(IRepository<>), typeof(MongoDBRepository<>));
+            services.AddAutoMapper(typeof(AutomapperProfile).Assembly);
+            services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
+            services.Configure<MongoDBSettings>(Configuration.GetSection(nameof(MongoDBSettings)));
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
